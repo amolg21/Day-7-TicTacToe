@@ -10,13 +10,13 @@ public class TicTacToe {
     static char letter;
     static Scanner sc = new Scanner(System.in);
 
-    public static void TicTacToeInit() {
+    public static void TicTacToeInit() {        // UC-1
         for (i = 0; i < 10; i++) {
             ticTacToe[i] = ' ';
         }
     }
 
-    public static void ChooseValue() {
+    public static void ChooseValue() {         // UC-2
 
         System.out.println("Please Select the Letter: X or O");
 
@@ -28,13 +28,13 @@ public class TicTacToe {
 
     }
 
-    static void ShowBoard() {
+    static void ShowBoard() {                   // UC-3
         for (i = 0; i <= 8; i++) {
             System.out.println(ticTacToe[i] + " | " + ticTacToe[++i] + " | " + ticTacToe[++i] + '\n' + "---------");
         }
     }
 
-    public static void MakeMove() {
+    public static void MakeMove() {               // UC-4,5
         System.out.println("Enter the index you want to enter the value (1-9)");
 
         int index = sc.nextInt();
@@ -43,7 +43,7 @@ public class TicTacToe {
         }
     }
 
-    public static void Toss() {
+    public static void Toss() {                      // UC-6
         Random rand = new Random();
         int toss= rand.nextInt(2);
         System.out.println(toss);
@@ -54,6 +54,30 @@ public class TicTacToe {
         }
     }
 
+    public static void GameCheck() {                     // UC-7
+
+        for(i=0;i<=6;i++) {                              // Because our conditions are valid till i=6.
+            if (i == 0 || i == 1 || i == 2) {
+                if ((ticTacToe[i] == ticTacToe[i + 3]) && (ticTacToe[i] == ticTacToe[i + 6]) && ticTacToe[i] != ' ') {
+                    System.out.println("WON");
+                }
+            } else if ((i == 0 || i == 3 || i == 6)) {
+                if ((ticTacToe[i] == ticTacToe[i + 1]) && (ticTacToe[i] == ticTacToe[i + 2]) && ticTacToe[i] != ' ') {
+                    System.out.println("WON");
+                }
+            } else if (i == 0) {
+                if ((ticTacToe[i] == ticTacToe[i + 4]) && (ticTacToe[i] == ticTacToe[i + 8]) && ticTacToe[i] != ' ') {
+                    System.out.println("WON");
+                }
+            } else if (i == 2) {
+                if ((ticTacToe[i] == ticTacToe[i + 2]) && (ticTacToe[i] == ticTacToe[i + 4]) && ticTacToe[i] != ' ') {
+                    System.out.println("WON");
+                }
+            } else {
+                System.out.println("Game is still on");
+            }
+        }
+    }
     public static void main(String[] args) {
         TicTacToeInit();
         Toss();
@@ -61,5 +85,6 @@ public class TicTacToe {
         ShowBoard();
         MakeMove();
         ShowBoard();
+        GameCheck();
     }
 }
