@@ -5,10 +5,11 @@ import java.util.Scanner;
 
 public class TicTacToe {
 
-    static int i;
+    static int i, index;
     static char[] ticTacToe = new char[10];
     static char letter;
     static Scanner sc = new Scanner(System.in);
+    static  Random rand = new Random();
 
     public static void TicTacToeInit() {        // UC-1
         for (i = 0; i < 10; i++) {
@@ -37,14 +38,13 @@ public class TicTacToe {
     public static void MakeMove() {               // UC-4,5
         System.out.println("Enter the index you want to enter the value (1-9)");
 
-        int index = sc.nextInt();
+        index = sc.nextInt();
         if (ticTacToe[index-1] == ' ') {
             ticTacToe[index - 1] = letter;
         }
     }
 
-    public static void Toss() {                      // UC-6
-        Random rand = new Random();
+    public static int Toss() {                      // UC-6
         int toss= rand.nextInt(2);
         System.out.println(toss);
         if ( toss==0) {
@@ -52,6 +52,7 @@ public class TicTacToe {
         } else {
             System.out.println("Computer won toss and will start first.");
         }
+        return toss;
     }
 
     public static void GameCheck() {                     // UC-7
@@ -74,9 +75,16 @@ public class TicTacToe {
                     System.out.println("WON");
                 }
             } else {
-                System.out.println("Game is still on");
+                System.out.println("Game is still on.....");
             }
         }
+    }
+
+    public static void ComputerTurn() {                   // UC-8
+        int compturn = rand.nextInt(10);
+       if (ticTacToe[compturn] == ' ') {
+           ticTacToe[compturn] = 'O';
+       }
     }
     public static void main(String[] args) {
         TicTacToeInit();
