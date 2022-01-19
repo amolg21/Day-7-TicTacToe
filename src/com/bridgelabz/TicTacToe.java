@@ -1,5 +1,6 @@
 package com.bridgelabz;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class TicTacToe {
@@ -42,8 +43,20 @@ public class TicTacToe {
         }
     }
 
+    public static void Toss() {
+        Random rand = new Random();
+        int toss= rand.nextInt(2);
+        System.out.println(toss);
+        if ( toss==0) {
+            System.out.println("User won the toss and will start first.");
+        } else {
+            System.out.println("Computer won toss and will start first.");
+        }
+    }
+
     public static void main(String[] args) {
         TicTacToeInit();
+        Toss();
         ChooseValue();
         ShowBoard();
         MakeMove();
